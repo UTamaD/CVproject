@@ -6,6 +6,7 @@ import numpy as np
 print(cv.__version__)
 print(np.__version__)
 
+
 cap = cv.VideoCapture(0)
 
 if not cap.isOpened():
