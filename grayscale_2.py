@@ -30,11 +30,6 @@ for y in range(sample.shape[0]):
     for x in range(sample.shape[1]):
         dst[y,x] = saturated( sample[y,x] + (sample[y,x]-ave)*alpha )
 
-
-
-
-
-
 #샘플 이미지와 결과 이미지를 창을 띄워 확인
 cv.imshow('sample',sample)
 cv.imshow('dst',dst)

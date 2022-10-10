@@ -13,7 +13,6 @@ print(np.__version__)
 #영상을 그레이스케일로 불러옴
 sample = cv.imread('sample.jpg',cv.IMREAD_GRAYSCALE)
 
-
 #영상의 평균 밝기를 구해 ave에 저장함
 temp = cv.mean(sample)
 ave = temp[0]
@@ -26,8 +25,6 @@ dst = np.empty(sample.shape,dtype=sample.dtype)
 for y in range(sample.shape[0]):
     for x in range(sample.shape[1]):
         dst[y,x] = AverageUnderZero(sample[y,x],ave)
-
-
 
 #샘플 이미지와 결과 이미지를 창을 띄워 확인
 cv.imshow('sample',sample)

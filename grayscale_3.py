@@ -1,12 +1,9 @@
 import cv2 as cv
 import numpy as np
 
-
-
 #opencv , numpy 버전 확인
 print(cv.__version__)
 print(np.__version__)
-
 
 #카메라 활성화, 만약 여는데 실패할 시 실패 메시지와 함께 프로그램 종료
 cap = cv.VideoCapture(0)
