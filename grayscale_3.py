@@ -22,7 +22,7 @@ out = cv.VideoWriter("output.avi", cv.VideoWriter_fourcc(*"DIVX"), fps,(f_width,
 while cap.isOpened():
     #프레임 비교를 위해 연속된 두 프레임을 불러옴
     status,frame= cap.read()
-    status2, frame2 = cap.read()
+    status2,frame2 = cap.read()
     #불러온 영상을 그레이스케일로 변환
     gray = cv.cvtColor(frame,cv.COLOR_BGR2GRAY)
     gray2 = cv.cvtColor(frame2,cv.COLOR_BGR2GRAY)
@@ -32,19 +32,20 @@ while cap.isOpened():
     pastAve = temp[0]
     temp = cv.mean(gray2)
     curAve = temp[0]
-    #평균 밝기가 30 이상 차이날시 , 뒤집힌 영상으로 전환
+    #평균 밝기가 30 이상 차이날시 , 상하반전,흑백반전 된 영상으로 3초간 변환
     if abs(pastAve - curAve)>30:
         #프레임을 카운트 하기 위한 변수
         count = 0
         while cap.isOpened():
-            #뒤집힌 그레이스케일 영상 생성
-            st,fr =cap.read()
-            gray3 = cv.cvtColor(fr, cv.COLOR_BGR2GRAY)
-            flip = cv.flip(gray3,0)
+            #반전된 그레이스케일 영상 생성
+            st,frame3 =cap.read()
+            gray3 = cv.cvtColor(frame3, cv.COLOR_BGR2GRAY)
+            flip_frame = cv.flip(gray3,0)
+            inverted_frame = np.invert(flip_frame)
             if st:
-                cv.imshow('view', flip)
+                cv.imshow('view', inverted_frame)
                 #영상 프레임 기록
-                out.write(flip)
+                out.write(inverted_frame)
                 #프레임 카운트
                 count = count + 1
             if cv.waitKey(1) & 0xFF == ord('q'):
